@@ -16,12 +16,31 @@ function normalizeItem(item) {
     return { title: item };
   }
 
+  const bulletList = Array.isArray(item.bullets) ? item.bullets : [];
+  const fallbackDescription =
+    item.description ||
+    item.matter ||
+    item.content ||
+    item.summary ||
+    (bulletList.length ? bulletList[0] : undefined);
+  const resolvedLink =
+    item.link ||
+    item.url ||
+    item.github ||
+    item.demo ||
+    item.live ||
+    item.links?.github ||
+    item.links?.demo ||
+    item.links?.live ||
+    item.links?.portfolio;
+
   return {
     title: item.title || item.name || item.label || "Item",
     subtitle: item.subtitle || item.org || item.issuer || item.venue || item.year,
-    description: item.description,
-    link: item.link || item.url,
-    tags: item.tags || [],
+    description: fallbackDescription,
+    link: resolvedLink,
+    tags: item.tags || item.tech || item.technologies || [],
+    bullets: bulletList,
   };
 }
 
@@ -58,6 +77,20 @@ export default function App() {
 
   const { profile, hasParam } = profileState;
 
+  const skillGroups = useMemo(() => {
+    return (profile?.skills || [])
+      .map((group) => ({
+        label: group.label || "Skills",
+        items: (group.items || []).map(normalizeSkillItem),
+      }))
+      .filter((group) => group.items.length > 0);
+  }, [profile]);
+
+  const projects = (profile?.projects || []).map(normalizeItem);
+  const certifications = (profile?.certifications || []).map(normalizeItem);
+  const publications = (profile?.publications || []).map(normalizeItem);
+  const achievements = [...(profile?.awards || []), ...(profile?.achievements || [])].map(normalizeItem);
+
   if (!hasParam || !profile) {
     return <Landing />;
   }
@@ -88,20 +121,6 @@ export default function App() {
   if (profile.email || profile.phone || profile.links) {
     navItems.push({ label: "Contact", href: "#contact", icon: "mail" });
   }
-
-  const skillGroups = useMemo(() => {
-    return (profile.skills || [])
-      .map((group) => ({
-        label: group.label || "Skills",
-        items: (group.items || []).map(normalizeSkillItem),
-      }))
-      .filter((group) => group.items.length > 0);
-  }, [profile.skills]);
-
-  const projects = (profile.projects || []).map(normalizeItem);
-  const certifications = (profile.certifications || []).map(normalizeItem);
-  const publications = (profile.publications || []).map(normalizeItem);
-  const achievements = [...(profile.awards || []), ...(profile.achievements || [])].map(normalizeItem);
 
   return (
     <div className="resume-root">
@@ -283,8 +302,16 @@ export default function App() {
                           ) : null}
                         </div>
                       </div>
+                      {project.subtitle ? <p>{project.subtitle}</p> : null}
                       {project.description ? (
                         <p className="resume-project-description">{project.description}</p>
+                      ) : null}
+                      {project.bullets?.length ? (
+                        <ul>
+                          {project.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
                       ) : null}
                       {project.tags?.length ? (
                         <div className="resume-project-tags">

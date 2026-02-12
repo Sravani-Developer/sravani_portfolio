@@ -1,29 +1,76 @@
 export const profiles = {
   sravanimedagam: {
-    name: "Sravani  Medagam",
+    name: "Sravani Medagam",
     title: "Full-Stack Web Developer",
-    location: "Los Angeles Metropolitan Area",
+    location: "United States",
     email: "sravanimedagam0709@gmail.com",
-    phone: "+1 657 631 7877",
-    resumeUrl: "/resumes/sravani.pdf",
+    phone: "657-631-7877",
+    resumeUrl: "https://drive.google.com/file/d/1yUNwpYKLq6SbLdy44DWMmDjw6b32gwwk/view?usp=sharing",
     links: {
       linkedin: "https://www.linkedin.com/in/sravanireddy-medagam-364190354",
-      github: ""
+      github: "https://github.com/Sravani-Developer",
+      portfolio: "https://github.com/Sravani-Developer"
     },
     summary:
-      "Full-Stack Web Developer with 4+ years of experience designing, developing, and maintaining scalable web applications. Skilled in frontend and backend development with a focus on clean, responsive user interfaces and reliable server-side logic. Experienced with JavaScript-based technologies including Angular, Node.js, Express.js, and MongoDB, and comfortable working across the full development lifecycle from requirements and API design to deployment and optimization.",
+      "Full-Stack Web Developer with 4+ years of experience designing, developing, and maintaining scalable web applications in the IT industry. Strong background in both frontend and backend development with a focus on clean, responsive user interfaces and reliable server-side logic. Experienced in JavaScript-based technologies including Angular, Node.js, Express.js, and MongoDB. Adept at working across the full software development lifecycle, from requirements analysis and API design to deployment and optimization. Currently pursuing advanced studies in Computer Science (Web Development) and actively seeking full-time Full-Stack Web Developer opportunities.",
     skills: [
       {
-        label: "Frontend",
-        items: ["Angular", "AngularJS", "JavaScript", "HTML", "CSS"]
+        label: "Frontend Technologies",
+        items: [
+          "Angular",
+          "AngularJS",
+          "React.js",
+          "HTML5",
+          "CSS3",
+          "JavaScript (ES6+)",
+          "Tailwind CSS",
+          "Responsive Design",
+          "Cross-Browser Compatibility"
+        ]
       },
       {
-        label: "Backend",
-        items: ["Node.js", "Express.js", "REST APIs"]
+        label: "Backend Technologies",
+        items: [
+          "Node.js",
+          "Express.js",
+          "RESTful API Development",
+          "Middleware",
+          "Authentication & Authorization",
+          "Server-Side Validation"
+        ]
       },
       {
-        label: "Database",
-        items: ["MongoDB"]
+        label: "Databases",
+        items: [
+          "MongoDB",
+          "MySQL",
+          "Database Design",
+          "Query Optimization",
+          "Data Modeling"
+        ]
+      },
+      {
+        label: "Architecture & Development",
+        items: [
+          "MVC Architecture",
+          "Component-Based Design",
+          "Full Software Development Lifecycle (SDLC)",
+          "Object-Oriented Programming (OOP)",
+          "Modular Code Structure"
+        ]
+      },
+      {
+        label: "Tools & DevOps",
+        items: [
+          "Git",
+          "GitHub",
+          "AWS",
+          "Docker",
+          "CI/CD(Github Actions/Jenkins)",
+          "Vite",
+          "Debugging"
+
+        ]
       }
     ],
     experience: [
@@ -33,18 +80,45 @@ export const profiles = {
         location: "Hyderabad",
         dates: "September 2020 - January 2025",
         bullets: [
-          "Designed, developed, and maintained full-stack web applications using Angular, Node.js, Express.js, and MongoDB.",
-          "Built responsive UI components and integrated them with backend services to support business workflows.",
-          "Implemented and consumed RESTful APIs, supported deployments, and handled bug fixes and optimizations."
+          "Designed and developed scalable full-stack web applications using Angular, Node.js, Express.js, and MongoDB.",
+          "Engineered RESTful APIs to support complex business workflows, data processing, and frontend integration.",
+          "Built responsive, performance-optimized user interfaces with structured component design and reusable UI patterns.",
+          "Implemented backend validation, routing logic, and middleware handling to ensure secure and reliable request processing.",
+          "Integrated frontend and backend systems with efficient data exchange and state management strategies.",
+          "Debugged and resolved production issues through systematic troubleshooting and code refactoring.",
+          "Enhanced existing applications by improving modular structure, performance efficiency, and code maintainability.",
+          "Collaborated with cross-functional teams to gather requirements, translate business needs into technical solutions, and deliver production-ready features."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "Personal Portfolio Website (Node.js + Vite + Tailwind CSS)",
+        links: {
+          github: "https://github.com/Sravani-Developer/sravani_portfolio"
+        },
+        bullets: [
+          "Architected and developed a modern, responsive portfolio application using Vite-powered Node.js tooling and Tailwind CSS.",
+          "Implemented a modular UI structure with reusable layout patterns, scalable utility classes, and consistent design tokens.",
+          "Applied mobile-first development using responsive breakpoints (sm, md, lg) to ensure cross-device compatibility.",
+          "Optimized build performance and asset bundling using Vite production configuration for deployment-ready output.",
+          "Improved UI interactivity through structured component styling, hover transitions, and clean visual hierarchy.",
+          "Followed clean code organization practices to maintain scalability and maintainability of frontend architecture."
         ]
       }
     ],
     education: [
       {
-        degree: "Computer Science (Web Development)",
+        degree: "Master’s in Computer Science (Web Development)",
         school: "Westcliff University",
         dates: "March 2025 - August 2026",
-        gpa: ""
+        gpa: "3.89"
+      },
+        {
+        degree: "Master’s in Computer Science ",
+        school: "Sri Krishnadevaraya University",
+        dates: "June 2019 - July 2021",
+        cgpa: "7.65"
       },
     ]
   },
