@@ -241,6 +241,15 @@ export default function App() {
                       View CV
                     </a>
                   ) : null}
+                  {profile.resumeDownloadUrl ? (
+                    <a
+                      className="resume-btn resume-btn-secondary"
+                      href={profile.resumeDownloadUrl}
+                      download
+                    >
+                      Download Resume
+                    </a>
+                  ) : null}
                   <a className="resume-btn resume-btn-primary" href={`mailto:${profile.email}`}>
                     Contact Me
                   </a>
