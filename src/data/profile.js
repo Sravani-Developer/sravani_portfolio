@@ -158,7 +158,8 @@ export const profiles = {
           "Responsive personal portfolio designed to present professional experience, projects, skills, education, and contact information.",
         image: "/portfolio.png",
         links: {
-          github: "https://github.com/Sravani-Developer/sravani_portfolio.git"
+          github: "https://github.com/Sravani-Developer/sravani_portfolio.git",
+          live: "https://sravani-portfolio-three.vercel.app/"
         },
         tags: ["React", "Vite", "Tailwind CSS", "Responsive Design"],
         bullets: [
