@@ -1,7 +1,7 @@
 export const profiles = {
   sravanimedagam: {
     name: "Sravani Medagam",
-    title: "Full-Stack Web Developer",
+    title: "Full-Stack Software Engineer",
     location: "United States",
     email: "sravanimedagam0709@gmail.com",
     phone: "657-631-7877",
@@ -12,20 +12,44 @@ export const profiles = {
       portfolio: "https://github.com/Sravani-Developer"
     },
     summary:
-      "Full-Stack Web Developer with 4+ years of experience designing, developing, and maintaining scalable web applications in the IT industry. Strong background in both frontend and backend development with a focus on clean, responsive user interfaces and reliable server-side logic. Experienced in JavaScript-based technologies including Angular, Node.js, Express.js, and MongoDB. Adept at working across the full software development lifecycle, from requirements analysis and API design to deployment and optimization. Currently pursuing advanced studies in Computer Science (Web Development) and actively seeking full-time Full-Stack Web Developer opportunities.",
+      "Full-Stack Software Engineer with experience building scalable web applications using React, Angular, Node.js, Express.js, and MongoDB. Skilled in designing RESTful APIs, authentication systems, responsive interfaces, and cloud-ready deployments. Strong understanding of system design fundamentals, performance optimization, secure backend architecture, and clean, maintainable code.",
+    tagline:
+      "I build secure, scalable full-stack web applications with React, Angular, Node.js, and MongoDB.",
+    openTo:
+      "Open to Full-Stack Software Engineer, Frontend Developer, and Web Developer roles.",
+    highlights: [
+      {
+        value: "4+",
+        label: "Years of full-stack development"
+      },
+      {
+        value: "MERN",
+        label: "React, Node.js, Express, MongoDB"
+      },
+      {
+        value: "Secure",
+        label: "JWT, sessions, RBAC, backend validation"
+      },
+      {
+        value: "Cloud",
+        label: "Render, MongoDB Atlas, CI/CD workflows"
+      }
+    ],
     skills: [
       {
         label: "Frontend Technologies",
         items: [
-          "Angular",
-          "AngularJS",
           "React.js",
+          "Angular",
+          "TypeScript",
+          "JavaScript (ES6+)",
+          "Redux",
+          "RxJS",
           "HTML5",
           "CSS3",
-          "JavaScript (ES6+)",
-          "Tailwind CSS",
-          "Responsive Design",
-          "Cross-Browser Compatibility"
+          "SCSS",
+          "Bootstrap",
+          "Tailwind CSS"
         ]
       },
       {
@@ -33,9 +57,10 @@ export const profiles = {
         items: [
           "Node.js",
           "Express.js",
-          "RESTful API Development",
+          "REST APIs",
+          "MVC Architecture",
+          "Authentication Systems",
           "Middleware",
-          "Authentication & Authorization",
           "Server-Side Validation"
         ]
       },
@@ -43,20 +68,26 @@ export const profiles = {
         label: "Databases",
         items: [
           "MongoDB",
+          "Mongoose",
           "MySQL",
-          "Database Design",
+          "Indexing",
           "Query Optimization",
+          "Aggregation Pipelines",
           "Data Modeling"
         ]
       },
       {
-        label: "Architecture & Development",
+        label: "Security & Architecture",
         items: [
-          "MVC Architecture",
-          "Component-Based Design",
-          "Full Software Development Lifecycle (SDLC)",
-          "Object-Oriented Programming (OOP)",
-          "Modular Code Structure"
+          "JWT",
+          "bcrypt",
+          "Session Authentication",
+          "RBAC",
+          "CORS",
+          "Helmet",
+          "Rate Limiting",
+          "System Design Basics",
+          "Scalable Architecture"
         ]
       },
       {
@@ -64,12 +95,14 @@ export const profiles = {
         items: [
           "Git",
           "GitHub",
+          "Postman",
           "AWS",
+          "Render",
+          "MongoDB Atlas",
           "Docker",
-          "CI/CD(Github Actions/Jenkins)",
-          "Vite",
-          "Debugging"
-
+          "GitHub Actions",
+          "Environment Configuration",
+          "Agile Development"
         ]
       }
     ],
@@ -79,43 +112,72 @@ export const profiles = {
         org: "Eazy Refund Consultancy LLP",
         location: "Hyderabad",
         dates: "September 2020 - January 2025",
+        tags: ["React", "Angular", "Node.js", "Express.js", "MongoDB", "JWT", "RBAC", "Agile"],
         bullets: [
-          "Designed and developed scalable full-stack web applications using Angular, Node.js, Express.js, and MongoDB.",
-          "Engineered RESTful APIs to support complex business workflows, data processing, and frontend integration.",
-          "Built responsive, performance-optimized user interfaces with structured component design and reusable UI patterns.",
-          "Implemented backend validation, routing logic, and middleware handling to ensure secure and reliable request processing.",
-          "Integrated frontend and backend systems with efficient data exchange and state management strategies.",
-          "Debugged and resolved production issues through systematic troubleshooting and code refactoring.",
-          "Enhanced existing applications by improving modular structure, performance efficiency, and code maintainability.",
-          "Collaborated with cross-functional teams to gather requirements, translate business needs into technical solutions, and deliver production-ready features."
+          "Developed scalable full-stack applications using React, Angular, Node.js, Express.js, and MongoDB to support real-world business workflows.",
+          "Designed RESTful APIs with Node.js and Express.js using MVC architecture and modular backend design principles.",
+          "Implemented secure authentication systems using JWT, bcrypt, session-based authentication, and role-based access control.",
+          "Optimized MongoDB performance with indexing, aggregation pipelines, and query tuning to improve data retrieval efficiency.",
+          "Built responsive, reusable UI components with React and Angular using mobile-first design principles.",
+          "Improved frontend performance through lazy loading, code splitting, and efficient state management techniques.",
+          "Collaborated in Agile sprint planning, code reviews, debugging, and iterative feature delivery."
         ]
       }
     ],
     projects: [
       {
-        name: "Personal Portfolio Website (Node.js + Vite + Tailwind CSS)",
+        title: "EventLens - Event Discovery & RSVP Platform",
+        subtitle: "React, Node.js, Express.js, MongoDB, Render, MongoDB Atlas",
+        description:
+          "Full-stack event management platform with role-based workflows for admins, organizers, and users.",
+        image: "/eventlens.png",
         links: {
-          github: "https://github.com/Sravani-Developer/sravani_portfolio"
+          github: "https://github.com/Sravani-Developer/project-3.git",
+          live: "https://eventlens-86zi.onrender.com"
         },
+        tags: ["React", "Node.js", "Express.js", "MongoDB", "RBAC", "PWA"],
+        highlights: [
+          "Modular React frontend with Express.js REST API backend",
+          "Session authentication with bcrypt, cookies, and RBAC",
+          "MongoDB indexing, pagination, search, and filtering",
+          "Production deployment on Render with MongoDB Atlas"
+        ],
         bullets: [
-          "Architected and developed a modern, responsive portfolio application using Vite-powered Node.js tooling and Tailwind CSS.",
-          "Implemented a modular UI structure with reusable layout patterns, scalable utility classes, and consistent design tokens.",
-          "Applied mobile-first development using responsive breakpoints (sm, md, lg) to ensure cross-device compatibility.",
-          "Optimized build performance and asset bundling using Vite production configuration for deployment-ready output.",
-          "Improved UI interactivity through structured component styling, hover transitions, and clean visual hierarchy.",
-          "Followed clean code organization practices to maintain scalability and maintainability of frontend architecture."
+          "Designed a modular architecture separating the React frontend from REST APIs built with Express.js.",
+          "Implemented session-based login, bcrypt password hashing, cookies, and role-based access control.",
+          "Built event creation, RSVP, search, filtering, and user dashboard workflows.",
+          "Optimized database access with MongoDB indexing and pagination for efficient data handling.",
+          "Added Progressive Web App support with service workers for improved offline usability.",
+          "Deployed the application on Render with MongoDB Atlas and secure production environment variables."
+        ]
+      },
+      {
+        title: "Developer Portfolio Website",
+        subtitle: "React, Vite, Tailwind CSS",
+        description:
+          "Responsive personal portfolio designed to present professional experience, projects, skills, education, and contact information.",
+        image: "/portfolio.png",
+        links: {
+          github: "https://github.com/Sravani-Developer/sravani_portfolio.git"
+        },
+        tags: ["React", "Vite", "Tailwind CSS", "Responsive Design"],
+        bullets: [
+          "Built a responsive portfolio using React, Vite, and Tailwind CSS with a component-based architecture.",
+          "Implemented dynamic project and profile rendering from structured data for easier future updates.",
+          "Improved performance using Vite build optimization and clean frontend asset bundling.",
+          "Prepared the site for deployment through GitHub Pages, Vercel, or similar static hosting workflows."
         ]
       }
     ],
     education: [
       {
-        degree: "Master’s in Computer Science (Web Development)",
+        degree: "Master's in Computer Science (Web Development)",
         school: "Westcliff University",
         dates: "March 2025 - August 2026",
         gpa: "3.89"
       },
         {
-        degree: "Master’s in Computer Science ",
+        degree: "Master's in Computer Science",
         school: "Sri Krishnadevaraya University",
         dates: "June 2019 - July 2021",
         cgpa: "7.65"
@@ -241,4 +303,4 @@ export const profiles = {
   }
 };
 
-export const defaultProfileKey = "Sravani";
+export const defaultProfileKey = "sravanimedagam";

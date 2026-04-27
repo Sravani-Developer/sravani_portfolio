@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
-import { profiles } from "./data/profile";
+import { defaultProfileKey, profiles } from "./data/profile";
 import Landing from "./components/Landing";
 
 function getProfileFromQuery(search) {
   const params = new URLSearchParams(search);
   const rawKey = params.get("profile");
-  const key = (rawKey || "").toLowerCase();
+  const key = (rawKey || defaultProfileKey).toLowerCase();
   const profile = key ? profiles[key] : null;
   return { profile, key, hasParam: Boolean(rawKey) };
 }
@@ -39,6 +39,10 @@ function normalizeItem(item) {
     subtitle: item.subtitle || item.org || item.issuer || item.venue || item.year,
     description: fallbackDescription,
     link: resolvedLink,
+    github: item.github || item.links?.github,
+    demo: item.demo || item.live || item.url || item.links?.demo || item.links?.live,
+    image: item.image || item.screenshot || item.thumbnail,
+    highlights: item.highlights || item.technicalHighlights || [],
     tags: item.tags || item.tech || item.technologies || [],
     bullets: bulletList,
   };
@@ -60,6 +64,14 @@ export default function App() {
   const [profileState, setProfileState] = useState(() =>
     getProfileFromQuery(window.location.search)
   );
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [contactStatus, setContactStatus] = useState("");
+  const [contactError, setContactError] = useState("");
+  const [isContactSubmitting, setIsContactSubmitting] = useState(false);
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -90,14 +102,53 @@ export default function App() {
   const certifications = (profile?.certifications || []).map(normalizeItem);
   const publications = (profile?.publications || []).map(normalizeItem);
   const achievements = [...(profile?.awards || []), ...(profile?.achievements || [])].map(normalizeItem);
+  const highlights = profile?.highlights || [];
 
-  if (!hasParam || !profile) {
+  const handleContactChange = (event) => {
+    const { name, value } = event.target;
+    setContactForm((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    setContactStatus("");
+    setContactError("");
+    setIsContactSubmitting(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/myklqwkz", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: contactForm.name,
+          email: contactForm.email,
+          message: contactForm.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to send message");
+      }
+
+      setContactForm({ name: "", email: "", message: "" });
+      setContactStatus("Message sent successfully. I will get back to you soon.");
+    } catch {
+      setContactError("Message could not be sent. Please email me directly instead.");
+    } finally {
+      setIsContactSubmitting(false);
+    }
+  };
+
+  if (hasParam && !profile) {
     return <Landing />;
   }
 
   const navItems = [
     { label: "Home", href: "#home", icon: "home" },
-    { label: "Summary", href: "#summary", icon: "article" },
+    { label: "About", href: "#about", icon: "article" },
   ];
 
   if (profile.experience?.length || profile.skills?.length) {
@@ -152,9 +203,6 @@ export default function App() {
                   <span className="material-symbols-outlined">terminal</span>
                 </a>
               ) : null}
-              <button className="resume-social-btn" type="button">
-                <span className="material-symbols-outlined">groups</span>
-              </button>
             </div>
           </div>
         </aside>
@@ -166,6 +214,7 @@ export default function App() {
                 <div className="resume-hero-text">
                   <span className="resume-hero-eyebrow">{profile.title}</span>
                   <h1 className="resume-hero-title">{profile.name}</h1>
+                  {profile.tagline ? <p className="resume-hero-subtitle">{profile.tagline}</p> : null}
                 </div>
                 <div className="resume-hero-meta">
                   <span>
@@ -199,8 +248,19 @@ export default function App() {
               </div>
             </section>
 
-            <section className="resume-section" id="summary">
-              <h2 className="resume-section-title">Summary</h2>
+            {highlights.length ? (
+              <section className="resume-highlights" aria-label="Professional highlights">
+                {highlights.map((item) => (
+                  <div className="resume-highlight-card" key={item.label}>
+                    <strong>{item.value}</strong>
+                    <span>{item.label}</span>
+                  </div>
+                ))}
+              </section>
+            ) : null}
+
+            <section className="resume-section" id="about">
+              <h2 className="resume-section-title">About</h2>
               <div className="resume-summary">
                 <p>{profile.summary}</p>
               </div>
@@ -232,6 +292,13 @@ export default function App() {
                                 <li key={bullet}>{bullet}</li>
                               ))}
                             </ul>
+                            {item.tags?.length ? (
+                              <div className="resume-timeline-tags">
+                                {item.tags.map((tag) => (
+                                  <span key={tag}>{tag}</span>
+                                ))}
+                              </div>
+                            ) : null}
                           </div>
                         </div>
                       ))}
@@ -277,7 +344,9 @@ export default function App() {
                         <h3>{item.degree}</h3>
                         <p>{item.school}</p>
                         <p className="resume-education-meta">
-                          {item.dates} - GPA {item.gpa}
+                          {item.dates}
+                          {item.gpa ? ` - GPA ${item.gpa}` : ""}
+                          {item.cgpa ? ` - CGPA ${item.cgpa}` : ""}
                         </p>
                       </div>
                     </div>
@@ -292,12 +361,24 @@ export default function App() {
                 <div className="resume-project-grid">
                   {projects.map((project) => (
                     <div key={project.title} className="resume-project-card">
+                      {project.image ? (
+                        <a className="resume-project-image-link" href={project.demo || project.link || project.github} target="_blank" rel="noreferrer">
+                          <img className="resume-project-image" src={project.image} alt={`${project.title} screenshot`} />
+                        </a>
+                      ) : null}
                       <div className="resume-project-header">
                         <h3>{project.title}</h3>
                         <div className="resume-project-links">
-                          {project.link ? (
-                            <a href={project.link} target="_blank" rel="noreferrer">
+                          {project.github ? (
+                            <a href={project.github} target="_blank" rel="noreferrer">
+                              <span className="material-symbols-outlined">code</span>
+                              GitHub
+                            </a>
+                          ) : null}
+                          {project.demo || project.link ? (
+                            <a href={project.demo || project.link} target="_blank" rel="noreferrer">
                               <span className="material-symbols-outlined">open_in_new</span>
+                              Live Demo
                             </a>
                           ) : null}
                         </div>
@@ -312,6 +393,16 @@ export default function App() {
                             <li key={bullet}>{bullet}</li>
                           ))}
                         </ul>
+                      ) : null}
+                      {project.highlights?.length ? (
+                        <div className="resume-project-highlights">
+                          <h4>Technical Highlights</h4>
+                          <div>
+                            {project.highlights.map((highlight) => (
+                              <span key={highlight}>{highlight}</span>
+                            ))}
+                          </div>
+                        </div>
                       ) : null}
                       {project.tags?.length ? (
                         <div className="resume-project-tags">
@@ -395,8 +486,8 @@ export default function App() {
                     Let's build something <span>extraordinary</span> together.
                   </h3>
                   <p>
-                    Open to new opportunities, consulting projects, or technical leadership
-                    roles. Reach out via the form or direct contact details.
+                    {profile.openTo || "Open to new opportunities, consulting projects, and full-stack development roles."}
+                    {" "}Reach out via the form or direct contact details.
                   </p>
                   <div className="resume-contact-list">
                     <div className="resume-contact-item">
@@ -434,32 +525,52 @@ export default function App() {
                               <span className="material-symbols-outlined">terminal</span>
                             </a>
                           ) : null}
-                          <a href="#">
-                            <span className="material-symbols-outlined">groups</span>
-                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="resume-contact-form">
-                  <form>
+                  <form onSubmit={handleContactSubmit}>
                     <div>
                       <label>Full Name</label>
-                      <input placeholder="Name" type="text" />
+                      <input
+                        name="name"
+                        placeholder="Name"
+                        type="text"
+                        value={contactForm.name}
+                        onChange={handleContactChange}
+                        required
+                      />
                     </div>
                     <div>
                       <label>Email Address</label>
-                      <input placeholder="email" type="email" />
+                      <input
+                        name="email"
+                        placeholder="email"
+                        type="email"
+                        value={contactForm.email}
+                        onChange={handleContactChange}
+                        required
+                      />
                     </div>
                     <div>
                       <label>Message</label>
-                      <textarea placeholder="Tell me about your project..." rows="5"></textarea>
+                      <textarea
+                        name="message"
+                        placeholder="Tell me about your project..."
+                        rows="5"
+                        value={contactForm.message}
+                        onChange={handleContactChange}
+                        required
+                      ></textarea>
                     </div>
-                    <button type="submit">
-                      Send Message
+                    <button type="submit" disabled={isContactSubmitting}>
+                      {isContactSubmitting ? "Sending..." : "Send Message"}
                       <span className="material-symbols-outlined">send</span>
                     </button>
+                    {contactStatus ? <p className="resume-contact-status">{contactStatus}</p> : null}
+                    {contactError ? <p className="resume-contact-error">{contactError}</p> : null}
                   </form>
                 </div>
               </div>

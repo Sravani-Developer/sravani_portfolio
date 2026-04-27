@@ -154,6 +154,13 @@ a {
   align-items: center;
 }
 
+.resume-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
 .resume-hero-eyebrow {
   color: var(--primary);
   font-weight: 700;
@@ -248,6 +255,36 @@ a {
   line-height: 1.7;
 }
 
+.resume-highlights {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.resume-highlight-card {
+  min-height: 132px;
+  background: var(--charcoal-light);
+  border: 1px solid #3b3120;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.resume-highlight-card strong {
+  color: var(--primary);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.resume-highlight-card span {
+  color: #e2d5b6;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .resume-grid {
   display: grid;
   gap: 48px;
@@ -312,6 +349,24 @@ a {
   color: #d6c7a5;
   font-size: 14px;
   line-height: 1.6;
+}
+
+.resume-timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.resume-timeline-tags span {
+  background: rgba(242, 162, 13, 0.12);
+  border: 1px solid rgba(242, 162, 13, 0.28);
+  color: #f6d89a;
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .resume-skill-groups {
@@ -409,13 +464,36 @@ a {
   background: var(--charcoal-light);
   border: 1px solid #3b3120;
   border-radius: 18px;
-  padding: 24px;
+  padding: 20px;
   transition: border-color 200ms ease, transform 200ms ease;
+  overflow: hidden;
 }
 
 .resume-project-card:hover {
   border-color: rgba(242, 162, 13, 0.3);
   transform: translateY(-2px);
+}
+
+.resume-project-image-link {
+  display: block;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #3b3120;
+  background: var(--background-dark);
+}
+
+.resume-project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 220ms ease;
+}
+
+.resume-project-image-link:hover .resume-project-image {
+  transform: scale(1.02);
 }
 
 .resume-project-header {
@@ -431,19 +509,69 @@ a {
   font-size: 20px;
 }
 
+.resume-project-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .resume-project-links a {
-  color: #9ca3af;
-  margin-left: 8px;
+  color: #d6c7a5;
+  border: 1px solid #493b22;
+  border-radius: 999px;
+  padding: 7px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.resume-project-links a span {
+  font-size: 16px;
 }
 
 .resume-project-links a:hover {
   color: var(--primary);
+  border-color: rgba(242, 162, 13, 0.5);
+  background: rgba(242, 162, 13, 0.08);
 }
 
 .resume-project-description {
   margin: 0 0 16px;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.resume-project-highlights {
+  margin: 18px 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 162, 13, 0.22);
+  background: rgba(242, 162, 13, 0.08);
+}
+
+.resume-project-highlights h4 {
+  margin: 0 0 10px;
+  color: var(--primary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.resume-project-highlights div {
+  display: grid;
+  gap: 8px;
+}
+
+.resume-project-highlights span {
+  color: #e2d5b6;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .resume-project-tags {
@@ -461,6 +589,7 @@ a {
   padding: 4px 8px;
   border-radius: 999px;
 }
+
 
 .resume-cert-grid {
   display: grid;
@@ -629,6 +758,7 @@ a {
 
 .resume-contact-item span {
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 .resume-contact-links {
@@ -676,6 +806,12 @@ a {
   padding: 12px;
   color: var(--text);
   font-size: 14px;
+  min-width: 0;
+}
+
+.resume-contact-form textarea {
+  resize: vertical;
+  min-height: 132px;
 }
 
 .resume-contact-form input:focus,
@@ -687,6 +823,7 @@ a {
 
 .resume-contact-form button {
   height: 52px;
+  width: 100%;
   border-radius: 12px;
   border: none;
   background: var(--primary);
@@ -700,6 +837,66 @@ a {
   justify-content: center;
   gap: 8px;
   cursor: pointer;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.resume-contact-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.resume-contact-status {
+  margin: 0;
+  color: #9ee6b5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.resume-contact-error {
+  margin: 0;
+  color: #fca5a5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .resume-container {
+    padding: 32px 16px 64px;
+    gap: 56px;
+  }
+
+  .resume-hero-meta {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .resume-project-card,
+  .resume-contact-form {
+    border-radius: 14px;
+    padding: 16px;
+  }
+
+  .resume-project-header {
+    flex-direction: column;
+  }
+
+  .resume-project-links a {
+    margin: 0;
+  }
+
+  .resume-contact h3 {
+    font-size: 24px;
+  }
+
+  .resume-contact-item {
+    align-items: flex-start;
+  }
+
+  .resume-contact-form button {
+    letter-spacing: 0.08em;
+  }
+
 }
 
 .resume-footer {
