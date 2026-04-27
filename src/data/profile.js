@@ -5,7 +5,7 @@ export const profiles = {
     location: "United States",
     email: "sravanimedagam0709@gmail.com",
     phone: "657-631-7877",
-    resumeUrl: "https://drive.google.com/file/d/1yUNwpYKLq6SbLdy44DWMmDjw6b32gwwk/view?usp=sharing",
+    resumeUrl: "/Sravani_Medagam_Resume.pdf",
     resumeDownloadUrl: "/Sravani_Medagam_Resume.pdf",
     links: {
       linkedin: "https://www.linkedin.com/in/sravanireddy-medagam-364190354",
