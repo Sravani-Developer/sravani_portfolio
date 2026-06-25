@@ -74,8 +74,10 @@ export default function AdminDashboard() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     loadDashboard().catch((loadError) => {
       setError(loadError.message);
-      clearAdminToken();
-      setIsAuthenticated(false);
+      if (loadError.status === 401) {
+        clearAdminToken();
+        setIsAuthenticated(false);
+      }
     });
   }, [isAuthenticated]);
 

@@ -13,6 +13,14 @@ export function clearAdminToken() {
   localStorage.removeItem("portfolio_admin_token");
 }
 
+export class ApiRequestError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.name = "ApiRequestError";
+    this.status = status;
+  }
+}
+
 export async function apiRequest(path, options = {}) {
   const headers = {
     "Content-Type": "application/json",
@@ -25,7 +33,7 @@ export async function apiRequest(path, options = {}) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.error || "API request failed");
+    throw new ApiRequestError(data.error || "API request failed", response.status);
   }
 
   return data;
