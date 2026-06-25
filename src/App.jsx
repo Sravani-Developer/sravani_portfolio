@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { defaultProfileKey, profiles } from "./data/profile";
+import AdminDashboard from "./components/AdminDashboard";
 import Landing from "./components/Landing";
+import { apiRequest } from "./utils/api";
+import { initAnalytics, trackEvent } from "./utils/analytics";
 
 function getProfileFromQuery(search) {
   const params = new URLSearchParams(search);
@@ -60,10 +63,54 @@ function normalizeSkillItem(item) {
   };
 }
 
+function getGithubUsername(profile) {
+  if (profile?.githubUsername) {
+    return profile.githubUsername;
+  }
+
+  const githubUrl = profile?.links?.github;
+  if (!githubUrl) {
+    return "";
+  }
+
+  try {
+    return new URL(githubUrl).pathname.split("/").filter(Boolean)[0] || "";
+  } catch {
+    return "";
+  }
+}
+
+function getFeaturedRepoMeta(profile) {
+  return new Map(
+    (profile?.githubFeaturedRepos || []).map((item) => [
+      String(item.repo || "").toLowerCase(),
+      item,
+    ])
+  );
+}
+
 export default function App() {
+  if (window.location.pathname === "/admin") {
+    return <AdminDashboard />;
+  }
+
+  return <PortfolioApp />;
+}
+
+function PortfolioApp() {
   const [profileState, setProfileState] = useState(() =>
     getProfileFromQuery(window.location.search)
   );
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("portfolio_theme");
+    if (savedTheme) {
+      return savedTheme;
+    }
+    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  });
+  const [githubRepos, setGithubRepos] = useState([]);
+  const [githubStatus, setGithubStatus] = useState("idle");
+  const [managedProjects, setManagedProjects] = useState([]);
   const [contactForm, setContactForm] = useState({
     name: "",
     email: "",
@@ -72,6 +119,17 @@ export default function App() {
   const [contactStatus, setContactStatus] = useState("");
   const [contactError, setContactError] = useState("");
   const [isContactSubmitting, setIsContactSubmitting] = useState(false);
+
+  useEffect(() => {
+    initAnalytics();
+    trackEvent("page_view", { profile: profileState.key || defaultProfileKey });
+  }, [profileState.key]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("portfolio_theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -88,6 +146,8 @@ export default function App() {
   }, []);
 
   const { profile, hasParam } = profileState;
+  const githubUsername = getGithubUsername(profile);
+  const featuredRepoMeta = useMemo(() => getFeaturedRepoMeta(profile), [profile]);
 
   const skillGroups = useMemo(() => {
     return (profile?.skills || [])
@@ -104,6 +164,70 @@ export default function App() {
   const achievements = [...(profile?.awards || []), ...(profile?.achievements || [])].map(normalizeItem);
   const highlights = profile?.highlights || [];
 
+  useEffect(() => {
+    apiRequest("/api/projects")
+      .then((data) => setManagedProjects(data.projects || []))
+      .catch(() => setManagedProjects([]));
+  }, []);
+
+  useEffect(() => {
+    if (!githubUsername) {
+      setGithubRepos([]);
+      setGithubStatus("idle");
+      return;
+    }
+
+    const controller = new AbortController();
+    setGithubStatus("loading");
+
+    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`, {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to load GitHub repositories");
+        }
+        return response.json();
+      })
+      .then((repos) => {
+        const filteredRepos = featuredRepoMeta.size
+          ? repos
+              .filter((repo) => featuredRepoMeta.has(repo.name.toLowerCase()))
+              .sort((firstRepo, secondRepo) => {
+                const featuredOrder = [...featuredRepoMeta.keys()];
+                return (
+                  featuredOrder.indexOf(firstRepo.name.toLowerCase()) -
+                  featuredOrder.indexOf(secondRepo.name.toLowerCase())
+                );
+              })
+          : repos.filter((repo) => !repo.fork).slice(0, 4);
+
+        const visibleRepos = filteredRepos
+          .map((repo) => ({
+            id: repo.id,
+            name: featuredRepoMeta.get(repo.name.toLowerCase())?.displayName || repo.name,
+            description:
+              featuredRepoMeta.get(repo.name.toLowerCase())?.description || repo.description,
+            url: repo.html_url,
+            language: repo.language,
+            stars: repo.stargazers_count,
+            updatedAt: repo.updated_at,
+          }));
+
+        setGithubRepos(visibleRepos);
+        setGithubStatus("ready");
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          return;
+        }
+        setGithubRepos([]);
+        setGithubStatus("error");
+      });
+
+    return () => controller.abort();
+  }, [githubUsername, featuredRepoMeta]);
+
   const handleContactChange = (event) => {
     const { name, value } = event.target;
     setContactForm((current) => ({ ...current, [name]: value }));
@@ -116,12 +240,8 @@ export default function App() {
     setIsContactSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/myklqwkz", {
+      await apiRequest("/api/contact", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           name: contactForm.name,
           email: contactForm.email,
@@ -129,14 +249,35 @@ export default function App() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Unable to send message");
-      }
-
       setContactForm({ name: "", email: "", message: "" });
       setContactStatus("Message sent successfully. I will get back to you soon.");
+      trackEvent("contact_form_submit", { status: "success" });
     } catch {
-      setContactError("Message could not be sent. Please email me directly instead.");
+      try {
+        const response = await fetch("https://formspree.io/f/myklqwkz", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: contactForm.name,
+            email: contactForm.email,
+            message: contactForm.message,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to send message");
+        }
+
+        setContactForm({ name: "", email: "", message: "" });
+        setContactStatus("Message sent successfully. I will get back to you soon.");
+        trackEvent("contact_form_submit", { status: "formspree_success" });
+      } catch {
+        setContactError("Message could not be sent. Please email me directly instead.");
+        trackEvent("contact_form_submit", { status: "error" });
+      }
     } finally {
       setIsContactSubmitting(false);
     }
@@ -157,8 +298,13 @@ export default function App() {
   if (profile.education?.length) {
     navItems.push({ label: "Education", href: "#education", icon: "school" });
   }
-  if (profile.projects?.length) {
+  const allProjects = [...projects, ...managedProjects.map(normalizeItem)];
+
+  if (allProjects.length) {
     navItems.push({ label: "Projects", href: "#projects", icon: "dashboard" });
+  }
+  if (githubUsername) {
+    navItems.push({ label: "GitHub", href: "#github", icon: "code" });
   }
   if (profile.certifications?.length) {
     navItems.push({ label: "Certifications", href: "#certifications", icon: "verified" });
@@ -193,6 +339,20 @@ export default function App() {
               ))}
             </nav>
             <div className="resume-social">
+              <button
+                className="resume-social-btn"
+                type="button"
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                onClick={() => {
+                  const nextTheme = theme === "dark" ? "light" : "dark";
+                  setTheme(nextTheme);
+                  trackEvent("theme_toggle", { theme: nextTheme });
+                }}
+              >
+                <span className="material-symbols-outlined">
+                  {theme === "dark" ? "light_mode" : "dark_mode"}
+                </span>
+              </button>
               {profile.links?.linkedin ? (
                 <a className="resume-social-btn" href={profile.links.linkedin} target="_blank" rel="noreferrer">
                   <span className="material-symbols-outlined">public</span>
@@ -231,6 +391,20 @@ export default function App() {
                   </span>
                 </div>
                 <div className="resume-hero-actions">
+                  <button
+                    className="resume-btn resume-btn-ghost"
+                    type="button"
+                    onClick={() => {
+                      const nextTheme = theme === "dark" ? "light" : "dark";
+                      setTheme(nextTheme);
+                      trackEvent("theme_toggle", { theme: nextTheme });
+                    }}
+                  >
+                    <span className="material-symbols-outlined">
+                      {theme === "dark" ? "light_mode" : "dark_mode"}
+                    </span>
+                    {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                  </button>
                   {profile.resumeUrl ? (
                     <a
                       className="resume-btn resume-btn-secondary"
@@ -364,15 +538,21 @@ export default function App() {
               </section>
             ) : null}
 
-            {projects.length ? (
+            {allProjects.length ? (
               <section className="resume-section" id="projects">
                 <h2 className="resume-section-title">Projects</h2>
                 <div className="resume-project-grid">
-                  {projects.map((project) => (
+                  {allProjects.map((project) => (
                     <div key={project.title} className="resume-project-card">
                       {project.image ? (
                         <a className="resume-project-image-link" href={project.demo || project.link || project.github} target="_blank" rel="noreferrer">
-                          <img className="resume-project-image" src={project.image} alt={`${project.title} screenshot`} />
+                          <img
+                            className="resume-project-image"
+                            src={project.image}
+                            alt={`${project.title} screenshot`}
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </a>
                       ) : null}
                       <div className="resume-project-header">
@@ -423,6 +603,73 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+              </section>
+            ) : null}
+
+            {githubUsername ? (
+              <section className="resume-section" id="github">
+                <div className="resume-section-header">
+                  <div>
+                    <h2 className="resume-section-title">GitHub Activity</h2>
+                    <p className="resume-section-kicker">
+                      Featured public repositories from @{githubUsername}
+                    </p>
+                  </div>
+                  {profile.links?.github ? (
+                    <a
+                      className="resume-inline-link"
+                      href={profile.links.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => trackEvent("github_profile_click")}
+                    >
+                      View GitHub
+                      <span className="material-symbols-outlined">open_in_new</span>
+                    </a>
+                  ) : null}
+                </div>
+
+                {githubStatus === "loading" ? (
+                  <div className="resume-github-status">Loading latest repositories...</div>
+                ) : null}
+
+                {githubStatus === "error" ? (
+                  <div className="resume-github-status">
+                    GitHub activity could not be loaded right now.
+                  </div>
+                ) : null}
+
+                {githubStatus === "ready" && githubRepos.length ? (
+                  <div className="resume-github-grid">
+                    {githubRepos.map((repo) => (
+                      <a
+                        key={repo.id}
+                        className="resume-github-card"
+                        href={repo.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackEvent("github_repo_click", { repo: repo.name })}
+                      >
+                        <div className="resume-github-card-header">
+                          <h3>{repo.name}</h3>
+                          <span className="material-symbols-outlined">open_in_new</span>
+                        </div>
+                        <p>{repo.description || "Public repository"}</p>
+                        <div className="resume-github-meta">
+                          {repo.language ? <span>{repo.language}</span> : null}
+                          <span>{repo.stars} stars</span>
+                          <span>
+                            Updated {new Date(repo.updatedAt).toLocaleDateString(undefined, {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
               </section>
             ) : null}
 

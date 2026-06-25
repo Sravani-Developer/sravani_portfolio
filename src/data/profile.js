@@ -12,6 +12,21 @@ export const profiles = {
       github: "https://github.com/Sravani-Developer",
       portfolio: "https://github.com/Sravani-Developer"
     },
+    githubUsername: "Sravani-Developer",
+    githubFeaturedRepos: [
+      {
+        repo: "project-3",
+        displayName: "EventLens",
+        description:
+          "Event discovery and RSVP platform with role-based workflows for admins, organizers, and users."
+      },
+      {
+        repo: "sravani_portfolio",
+        displayName: "Developer Portfolio Website",
+        description:
+          "React and Vite portfolio with admin dashboard, contact management, visitor tracking, and GitHub activity."
+      }
+    ],
     summary:
       "Full-Stack Software Engineer with experience building scalable web applications using React, Angular, Node.js, Express.js, and MongoDB. Skilled in designing RESTful APIs, authentication systems, responsive interfaces, and cloud-ready deployments. Strong understanding of system design fundamentals, performance optimization, secure backend architecture, and clean, maintainable code.",
     tagline:
@@ -163,6 +178,12 @@ export const profiles = {
           live: "https://sravani-portfolio-three.vercel.app/"
         },
         tags: ["React", "Vite", "Tailwind CSS", "Responsive Design"],
+        highlights: [
+          "Dynamic profile and project rendering from structured React data",
+          "Dark and light mode with persisted user preference",
+          "GitHub API integration for live repository activity",
+          "Admin dashboard, contact management, and visitor tracking API"
+        ],
         bullets: [
           "Built a responsive portfolio using React, Vite, and Tailwind CSS with a component-based architecture.",
           "Implemented dynamic project and profile rendering from structured data for easier future updates.",

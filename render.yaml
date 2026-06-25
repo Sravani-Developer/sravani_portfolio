@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: portfolio-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start:api
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGODB_DB_NAME
+        value: portfolio
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: ADMIN_JWT_SECRET
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: ALLOWED_ORIGIN
+        sync: false

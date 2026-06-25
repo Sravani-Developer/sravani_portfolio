@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
 :root {
   --primary: #f2a20d;
   --background-dark: #221c10;
@@ -8,6 +6,30 @@
   --border: #493b22;
   --text: #ffffff;
   --muted: #cbb690;
+  --muted-strong: #e2d5b6;
+  --surface-border: #3b3120;
+  --tag-background: #493b22;
+  --button-secondary: #493b22;
+  --button-secondary-hover: #5a4a2c;
+  --shadow-primary: rgba(242, 162, 13, 0.2);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --primary: #b96b00;
+  --background-dark: #f7f5f0;
+  --charcoal-dark: #ffffff;
+  --charcoal-light: #ffffff;
+  --border: #d8d0c2;
+  --text: #201a12;
+  --muted: #6b5d4a;
+  --muted-strong: #3d3429;
+  --surface-border: #e3dccf;
+  --tag-background: #f0e8d9;
+  --button-secondary: #ece3d2;
+  --button-secondary-hover: #e2d4bd;
+  --shadow-primary: rgba(185, 107, 0, 0.18);
+  color-scheme: light;
 }
 
 * {
@@ -96,7 +118,7 @@ a {
 }
 
 .resume-nav-link:hover {
-  background: #493b22;
+  background: var(--button-secondary);
   color: var(--primary);
 }
 
@@ -223,22 +245,33 @@ a {
 }
 
 .resume-btn-secondary {
-  background: #493b22;
-  color: #ffffff;
+  background: var(--button-secondary);
+  color: var(--text);
 }
 
 .resume-btn-secondary:hover {
-  background: #5a4a2c;
+  background: var(--button-secondary-hover);
 }
 
 .resume-btn-primary {
   background: var(--primary);
   color: #1a160f;
-  box-shadow: 0 12px 24px rgba(242, 162, 13, 0.2);
+  box-shadow: 0 12px 24px var(--shadow-primary);
 }
 
 .resume-btn-primary:hover {
   background: #e3950c;
+}
+
+.resume-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.resume-btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .resume-section-title {
@@ -248,9 +281,46 @@ a {
   letter-spacing: -0.02em;
 }
 
+.resume-section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.resume-section-header .resume-section-title {
+  margin-bottom: 6px;
+}
+
+.resume-section-kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.resume-inline-link {
+  color: var(--primary);
+  border: 1px solid rgba(242, 162, 13, 0.32);
+  border-radius: 999px;
+  padding: 9px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.resume-inline-link span {
+  font-size: 16px;
+}
+
 .resume-summary p {
   margin: 0;
-  color: #e2d5b6;
+  color: var(--muted-strong);
   font-size: 18px;
   line-height: 1.7;
 }
@@ -264,7 +334,7 @@ a {
 .resume-highlight-card {
   min-height: 132px;
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -280,7 +350,7 @@ a {
 }
 
 .resume-highlight-card span {
-  color: #e2d5b6;
+  color: var(--muted-strong);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -340,13 +410,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
 }
 
 .resume-timeline-content ul {
   margin: 0;
   padding-left: 18px;
-  color: #d6c7a5;
+  color: var(--muted-strong);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -406,7 +476,7 @@ a {
 .resume-skill-text {
   font-size: 15px;
   font-weight: 600;
-  color: #e6decf;
+  color: var(--muted-strong);
 }
 
 .resume-education-grid {
@@ -416,7 +486,7 @@ a {
 
 .resume-education-card {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 24px;
   display: flex;
@@ -462,7 +532,7 @@ a {
 
 .resume-project-card {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 20px;
   transition: border-color 200ms ease, transform 200ms ease;
@@ -479,7 +549,7 @@ a {
   margin-bottom: 18px;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   background: var(--background-dark);
 }
 
@@ -517,8 +587,8 @@ a {
 }
 
 .resume-project-links a {
-  color: #d6c7a5;
-  border: 1px solid #493b22;
+  color: var(--muted-strong);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 7px 10px;
   display: inline-flex;
@@ -569,7 +639,7 @@ a {
 }
 
 .resume-project-highlights span {
-  color: #e2d5b6;
+  color: var(--muted-strong);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -581,13 +651,85 @@ a {
 }
 
 .resume-project-tags span {
-  background: #493b22;
-  color: #d6c7a5;
+  background: var(--tag-background);
+  color: var(--muted-strong);
   font-size: 10px;
   text-transform: uppercase;
   font-weight: 700;
   padding: 4px 8px;
   border-radius: 999px;
+}
+
+.resume-github-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.resume-github-card {
+  min-height: 176px;
+  background: var(--charcoal-light);
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.resume-github-card:hover {
+  border-color: rgba(242, 162, 13, 0.36);
+  transform: translateY(-2px);
+}
+
+.resume-github-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.resume-github-card h3 {
+  margin: 0;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.resume-github-card-header span {
+  color: var(--primary);
+  font-size: 20px;
+  flex: 0 0 auto;
+}
+
+.resume-github-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.resume-github-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume-github-meta span {
+  background: var(--tag-background);
+  color: var(--muted-strong);
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.resume-github-status {
+  background: var(--charcoal-light);
+  border: 1px solid var(--surface-border);
+  border-radius: 14px;
+  color: var(--muted);
+  padding: 18px;
 }
 
 
@@ -599,7 +741,7 @@ a {
 
 .resume-cert-card {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 20px;
   text-align: center;
@@ -637,7 +779,7 @@ a {
 
 .resume-publication-card {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 20px;
 }
@@ -670,7 +812,7 @@ a {
 
 .resume-publication-description {
   margin: 8px 0 0;
-  color: #d6c7a5;
+  color: var(--muted-strong);
   font-size: 14px;
 }
 
@@ -681,7 +823,7 @@ a {
 
 .resume-achievement-card {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 20px;
 }
@@ -741,7 +883,7 @@ a {
   height: 48px;
   border-radius: 14px;
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -777,7 +919,7 @@ a {
 
 .resume-contact-form {
   background: var(--charcoal-light);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 24px;
 }
@@ -801,7 +943,7 @@ a {
 .resume-contact-form textarea {
   width: 100%;
   background: var(--background-dark);
-  border: 1px solid #3b3120;
+  border: 1px solid var(--surface-border);
   border-radius: 12px;
   padding: 12px;
   color: var(--text);
@@ -881,6 +1023,10 @@ a {
     flex-direction: column;
   }
 
+  .resume-section-header {
+    flex-direction: column;
+  }
+
   .resume-project-links a {
     margin: 0;
   }
@@ -906,6 +1052,328 @@ a {
   color: var(--muted);
 }
 
+.admin-root {
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #172033;
+  padding: 32px;
+}
+
+.admin-login-root {
+  display: grid;
+  place-items: center;
+}
+
+.admin-login-card,
+.admin-panel,
+.admin-metrics div {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
+}
+
+.admin-login-card {
+  width: min(100%, 420px);
+  padding: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.admin-login-card h1,
+.admin-header h1,
+.admin-panel h2,
+.admin-list-item h3 {
+  margin: 0;
+}
+
+.admin-eyebrow {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.admin-login-card label,
+.admin-project-form {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-login-card input,
+.admin-project-form input,
+.admin-project-form textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: #172033;
+  font: inherit;
+}
+
+.admin-login-card input:focus,
+.admin-project-form input:focus,
+.admin-project-form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  outline: none;
+}
+
+.admin-project-form textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.admin-login-card button,
+.admin-project-form button,
+.admin-header-actions button,
+.admin-list-item button,
+.admin-header-actions a {
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 10px 13px;
+}
+
+.admin-header-actions a {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #2563eb;
+}
+
+.admin-header-actions button,
+.admin-list-item button {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.admin-login-card button:hover,
+.admin-project-form button:hover {
+  background: #1d4ed8;
+}
+
+.admin-header-actions button:hover,
+.admin-list-item button:hover,
+.admin-header-actions a:hover {
+  background: #dbeafe;
+}
+
+.admin-login-card a {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 auto 24px;
+  max-width: 1180px;
+}
+
+.admin-header-actions,
+.admin-row-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-metrics,
+.admin-grid {
+  display: grid;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto 20px;
+}
+
+.admin-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.admin-metrics div {
+  padding: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.admin-metrics strong {
+  color: #2563eb;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.admin-metrics span,
+.admin-panel-heading p,
+.admin-list-item p,
+.admin-event-list span {
+  color: #64748b;
+}
+
+.admin-panel {
+  max-width: 1180px;
+  margin: 0 auto 20px;
+  padding: 20px;
+}
+
+.admin-panel-heading {
+  margin-bottom: 16px;
+}
+
+.admin-panel-heading p {
+  margin: 6px 0 0;
+}
+
+.admin-project-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-project-form textarea,
+.admin-form-actions {
+  grid-column: 1 / -1;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-list,
+.admin-event-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-list-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.admin-list-item p {
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+.admin-list-item span {
+  color: #2563eb;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.admin-event-list div {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 1fr 1fr auto;
+  padding: 12px;
+}
+
+.admin-analytics-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-analytics-grid h3 {
+  margin: 0 0 12px;
+}
+
+.admin-bar-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-bar-row {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(100px, 0.7fr) 1fr auto;
+}
+
+.admin-bar-row span {
+  color: #475569;
+  overflow-wrap: anywhere;
+}
+
+.admin-bar-row div {
+  background: #e2e8f0;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.admin-bar-row i {
+  background: #2563eb;
+  display: block;
+  height: 100%;
+}
+
+.admin-bar-row strong {
+  color: #172033;
+}
+
+.admin-status,
+.admin-error {
+  max-width: 1180px;
+  margin: 0 auto 16px;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.admin-status {
+  background: #e7f8ed;
+  color: #166534;
+}
+
+.admin-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@media (min-width: 900px) {
+  .admin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-analytics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-root {
+    padding: 18px;
+  }
+
+  .admin-header,
+  .admin-list-item,
+  .admin-event-list div {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-project-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (min-width: 1024px) {
   .resume-sidebar {
     display: block;
@@ -928,6 +1396,10 @@ a {
   }
 
   .resume-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resume-github-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

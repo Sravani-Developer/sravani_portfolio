@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "node server/index.js",
+    "start:api": "node server/index.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "mongodb": "^6.21.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
