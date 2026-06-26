@@ -14,6 +14,10 @@ const files = {
 
 let mongoClientPromise;
 
+function resetMongoClient() {
+  mongoClientPromise = undefined;
+}
+
 async function getMongoDb() {
   if (!config.mongoUri) {
     return null;
@@ -28,6 +32,22 @@ async function getMongoDb() {
   return client.db(config.mongoDbName);
 }
 
+async function withMongoRetry(operation) {
+  const db = await getMongoDb();
+
+  if (!db) {
+    return null;
+  }
+
+  try {
+    return await operation(db);
+  } catch {
+    resetMongoClient();
+    const retryDb = await getMongoDb();
+    return operation(retryDb);
+  }
+}
+
 async function ensureFile(filePath) {
   await mkdir(dirname(filePath), { recursive: true });
 
@@ -37,10 +57,12 @@ async function ensureFile(filePath) {
 }
 
 export async function readCollection(name) {
-  const db = await getMongoDb();
+  const mongoResult = await withMongoRetry((db) =>
+    db.collection(name).find({}, { projection: { _id: 0 } }).toArray()
+  );
 
-  if (db) {
-    return db.collection(name).find({}, { projection: { _id: 0 } }).toArray();
+  if (mongoResult) {
+    return mongoResult;
   }
 
   const filePath = files[name];
@@ -60,9 +82,7 @@ export async function readCollection(name) {
 }
 
 export async function writeCollection(name, data) {
-  const db = await getMongoDb();
-
-  if (db) {
+  const mongoResult = await withMongoRetry(async (db) => {
     const collection = db.collection(name);
     await collection.deleteMany({});
 
@@ -70,6 +90,10 @@ export async function writeCollection(name, data) {
       await collection.insertMany(data);
     }
 
+    return true;
+  });
+
+  if (mongoResult) {
     return;
   }
 
