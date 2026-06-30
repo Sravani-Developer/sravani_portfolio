@@ -617,6 +617,36 @@ a {
   line-height: 1.6;
 }
 
+.resume-project-insights {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.resume-project-insights div {
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.resume-project-insights span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.resume-project-insights p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .resume-project-highlights {
   margin: 18px 0;
   padding: 14px;

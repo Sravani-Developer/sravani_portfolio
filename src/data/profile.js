@@ -130,12 +130,9 @@ export const profiles = {
         ],
         bullets: [
           "Developed and scaled 5 business-critical web applications serving 6,000+ users across tax, compliance, customer onboarding, document management, and payment-processing workflows.",
-          "Owned end-to-end software development lifecycle activities, working directly with clients and stakeholders to gather requirements, design solutions, deliver features, and support production systems.",
           "Led migration of legacy AngularJS applications to React, modernizing frontend architecture and improving maintainability, scalability, and developer productivity.",
-          "Built customer self-service portals for document access, service-request tracking, account management, and business resource retrieval.",
           "Architected and maintained 40+ RESTful APIs using Node.js, Express.js, and MongoDB for authentication, onboarding, payment processing, workflow automation, reporting, and document management.",
           "Integrated secure payment gateways and third-party business services supporting thousands of customer transactions annually across multiple platforms.",
-          "Optimized application performance through database indexing, query optimization, lazy loading, and code-splitting techniques.",
           "Deployed and maintained production applications on AWS, managing releases, monitoring system health, troubleshooting production issues, and ensuring platform reliability.",
           "Mentored 6 junior developers through code reviews, technical guidance, and knowledge-sharing while contributing to Agile planning and project delivery."
         ]
@@ -147,6 +144,14 @@ export const profiles = {
         subtitle: "React, Node.js, Express.js, MongoDB, Render, MongoDB Atlas",
         description:
           "Full-stack event discovery platform enabling users to discover, create, manage, and RSVP to local events.",
+        role:
+          "Full-stack developer responsible for frontend workflows, backend APIs, authentication, and deployment.",
+        problem:
+          "Local event users needed one place to discover events, RSVP, and manage organizer/admin workflows securely.",
+        impact:
+          "Delivered complete user, organizer, and admin flows with RSVP validation, protected access, and production deployment.",
+        architecture:
+          "React frontend connected to an Express.js REST API, backed by MongoDB Atlas and deployed on Render.",
         image: "/eventlens.png",
         links: {
           github: "https://github.com/Sravani-Developer/project-3.git",
@@ -171,6 +176,14 @@ export const profiles = {
         subtitle: "React, Vite, Node.js, MongoDB Atlas, Vercel, Render",
         description:
           "Full-stack portfolio platform with an admin dashboard for projects, contact inquiries, and visitor analytics.",
+        role:
+          "Sole developer responsible for frontend, backend API, admin dashboard, database persistence, and cloud deployment.",
+        problem:
+          "The portfolio needed to move beyond a static resume page and support live project updates, contact tracking, and visitor insight.",
+        impact:
+          "Added CMS-style project management, contact message tracking, visitor analytics, GitHub activity, and production persistence.",
+        architecture:
+          "React/Vite frontend on Vercel -> Node.js REST API on Render -> MongoDB Atlas for projects, contacts, and analytics events.",
         image: "/portfolio.png",
         links: {
           github: "https://github.com/Sravani-Developer/sravani_portfolio.git",

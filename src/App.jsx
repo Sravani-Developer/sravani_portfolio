@@ -45,6 +45,10 @@ function normalizeItem(item) {
     github: item.github || item.links?.github,
     demo: item.demo || item.live || item.url || item.links?.demo || item.links?.live,
     image: item.image || item.screenshot || item.thumbnail,
+    role: item.role,
+    problem: item.problem,
+    impact: item.impact,
+    architecture: item.architecture,
     highlights: item.highlights || item.technicalHighlights || [],
     tags: item.tags || item.tech || item.technologies || [],
     bullets: bulletList,
@@ -424,6 +428,9 @@ function PortfolioApp() {
                       Download Resume
                     </a>
                   ) : null}
+                  <a className="resume-btn resume-btn-secondary" href="#projects">
+                    View Projects
+                  </a>
                   <a className="resume-btn resume-btn-primary" href={`mailto:${profile.email}`}>
                     Contact Me
                   </a>
@@ -575,6 +582,34 @@ function PortfolioApp() {
                       {project.subtitle ? <p>{project.subtitle}</p> : null}
                       {project.description ? (
                         <p className="resume-project-description">{project.description}</p>
+                      ) : null}
+                      {[project.role, project.problem, project.impact, project.architecture].some(Boolean) ? (
+                        <div className="resume-project-insights">
+                          {project.role ? (
+                            <div>
+                              <span>Role</span>
+                              <p>{project.role}</p>
+                            </div>
+                          ) : null}
+                          {project.problem ? (
+                            <div>
+                              <span>Problem</span>
+                              <p>{project.problem}</p>
+                            </div>
+                          ) : null}
+                          {project.impact ? (
+                            <div>
+                              <span>Impact</span>
+                              <p>{project.impact}</p>
+                            </div>
+                          ) : null}
+                          {project.architecture ? (
+                            <div>
+                              <span>Architecture</span>
+                              <p>{project.architecture}</p>
+                            </div>
+                          ) : null}
+                        </div>
                       ) : null}
                       {project.bullets?.length ? (
                         <ul>
