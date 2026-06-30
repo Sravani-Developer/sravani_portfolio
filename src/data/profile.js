@@ -1,7 +1,7 @@
 export const profiles = {
   sravanimedagam: {
     name: "Sravani Medagam",
-    title: "Full-Stack Software Engineer",
+    title: "Full Stack Engineer",
     location: "United States",
     email: "sravanimedagam0709@gmail.com",
     phone: "657-631-7877",
@@ -28,124 +28,125 @@ export const profiles = {
       }
     ],
     summary:
-      "Full-Stack Software Engineer with experience building scalable web applications using React, Angular, Node.js, Express.js, and MongoDB. Skilled in designing RESTful APIs, authentication systems, responsive interfaces, and cloud-ready deployments. Strong understanding of system design fundamentals, performance optimization, secure backend architecture, and clean, maintainable code.",
+      "Full Stack Engineer with 4.5+ years of experience building scalable web applications using React.js, Next.js, Node.js, MongoDB, PostgreSQL, and AWS. Experienced in developing production applications serving 6,000+ users, designing RESTful APIs, integrating payment gateways, modernizing AngularJS applications, and mentoring junior developers.",
     tagline:
-      "I build secure, scalable full-stack web applications with React, Angular, Node.js, and MongoDB.",
+      "I build production-ready full-stack applications with React.js, Node.js, MongoDB, PostgreSQL, and AWS.",
     openTo:
       "Open to Full-Stack Software Engineer, Frontend Developer, and Web Developer roles.",
     highlights: [
       {
-        value: "4+",
+        value: "4.5+",
         label: "Years of full-stack development"
       },
       {
-        value: "MERN",
-        label: "React, Node.js, Express, MongoDB"
+        value: "6K+",
+        label: "Users served by production apps"
       },
       {
-        value: "Secure",
-        label: "JWT, sessions, RBAC, backend validation"
+        value: "40+",
+        label: "REST APIs built and maintained"
       },
       {
-        value: "Cloud",
-        label: "Render, MongoDB Atlas, CI/CD workflows"
+        value: "6",
+        label: "Junior developers mentored"
       }
     ],
     skills: [
       {
-        label: "Frontend Technologies",
+        label: "Frontend",
         items: [
           "React.js",
+          "Next.js",
           "Angular",
-          "TypeScript",
+          "AngularJS",
           "JavaScript (ES6+)",
-          "Redux",
-          "RxJS",
+          "TypeScript",
           "HTML5",
           "CSS3",
-          "SCSS",
+          "SASS",
           "Bootstrap",
-          "Tailwind CSS"
+          "Responsive Design"
         ]
       },
       {
-        label: "Backend Technologies",
+        label: "Backend",
         items: [
           "Node.js",
           "Express.js",
           "REST APIs",
-          "MVC Architecture",
-          "Authentication Systems",
-          "Middleware",
-          "Server-Side Validation"
+          "Authentication & Authorization",
+          "JWT",
+          "Session Management"
         ]
       },
       {
         label: "Databases",
         items: [
           "MongoDB",
+          "MongoDB Atlas",
           "Mongoose",
+          "PostgreSQL",
           "MySQL",
-          "Indexing",
-          "Query Optimization",
-          "Aggregation Pipelines",
           "Data Modeling"
         ]
       },
       {
-        label: "Security & Architecture",
+        label: "Cloud & DevOps",
         items: [
-          "JWT",
-          "bcrypt",
-          "Session Authentication",
-          "RBAC",
-          "CORS",
-          "Helmet",
-          "Rate Limiting",
-          "System Design Basics",
-          "Scalable Architecture"
+          "AWS",
+          "Git",
+          "GitHub",
+          "CI/CD",
+          "Vercel",
+          "Render"
         ]
       },
       {
-        label: "Tools & DevOps",
+        label: "Tools",
         items: [
-          "Git",
-          "GitHub",
           "Postman",
-          "AWS",
-          "Render",
-          "MongoDB Atlas",
+          "VS Code",
           "Docker",
-          "GitHub Actions",
-          "Environment Configuration",
-          "Agile Development"
+          "npm",
+          "Nodemon"
         ]
       }
     ],
     experience: [
       {
-        role: "Full-Stack Web Developer",
+        role: "Full Stack Engineer",
         org: "Eazy Refund Consultancy LLP",
-        location: "Hyderabad",
+        location: "Hyderabad, India",
         dates: "September 2020 - January 2025",
-        tags: ["React", "Angular", "Node.js", "Express.js", "MongoDB", "JWT", "RBAC", "Agile"],
+        tags: [
+          "React.js",
+          "AngularJS",
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "AWS",
+          "Payment Gateways",
+          "Agile"
+        ],
         bullets: [
-          "Developed scalable full-stack applications using React, Angular, Node.js, Express.js, and MongoDB to support real-world business workflows.",
-          "Designed RESTful APIs with Node.js and Express.js using MVC architecture and modular backend design principles.",
-          "Implemented secure authentication systems using JWT, bcrypt, session-based authentication, and role-based access control.",
-          "Optimized MongoDB performance with indexing, aggregation pipelines, and query tuning to improve data retrieval efficiency.",
-          "Built responsive, reusable UI components with React and Angular using mobile-first design principles.",
-          "Improved frontend performance through lazy loading, code splitting, and efficient state management techniques.",
-          "Collaborated in Agile sprint planning, code reviews, debugging, and iterative feature delivery."
+          "Developed and scaled 5 business-critical web applications serving 6,000+ users across tax, compliance, customer onboarding, document management, and payment-processing workflows.",
+          "Owned end-to-end software development lifecycle activities, working directly with clients and stakeholders to gather requirements, design solutions, deliver features, and support production systems.",
+          "Led migration of legacy AngularJS applications to React, modernizing frontend architecture and improving maintainability, scalability, and developer productivity.",
+          "Built customer self-service portals for document access, service-request tracking, account management, and business resource retrieval.",
+          "Architected and maintained 40+ RESTful APIs using Node.js, Express.js, and MongoDB for authentication, onboarding, payment processing, workflow automation, reporting, and document management.",
+          "Integrated secure payment gateways and third-party business services supporting thousands of customer transactions annually across multiple platforms.",
+          "Optimized application performance through database indexing, query optimization, lazy loading, and code-splitting techniques.",
+          "Deployed and maintained production applications on AWS, managing releases, monitoring system health, troubleshooting production issues, and ensuring platform reliability.",
+          "Mentored 6 junior developers through code reviews, technical guidance, and knowledge-sharing while contributing to Agile planning and project delivery."
         ]
       }
     ],
     projects: [
       {
-        title: "EventLens - Event Discovery & RSVP Platform",
+        title: "EventLens - Event Discovery & Management Platform",
         subtitle: "React, Node.js, Express.js, MongoDB, Render, MongoDB Atlas",
         description:
-          "Full-stack event management platform with role-based workflows for admins, organizers, and users.",
+          "Full-stack event discovery platform enabling users to discover, create, manage, and RSVP to local events.",
         image: "/eventlens.png",
         links: {
           github: "https://github.com/Sravani-Developer/project-3.git",
@@ -153,42 +154,40 @@ export const profiles = {
         },
         tags: ["React", "Node.js", "Express.js", "MongoDB", "RBAC", "PWA"],
         highlights: [
-          "Modular React frontend with Express.js REST API backend",
-          "Session authentication with bcrypt, cookies, and RBAC",
-          "MongoDB indexing, pagination, search, and filtering",
-          "Production deployment on Render with MongoDB Atlas"
+          "Event discovery, creation, management, and RSVP workflows",
+          "Session authentication, bcrypt hashing, protected routes, and RBAC",
+          "REST APIs for events, RSVPs, attendee tracking, and user accounts",
+          "Search/filtering, RSVP validation, organizer dashboards, and PWA support"
         ],
         bullets: [
-          "Designed a modular architecture separating the React frontend from REST APIs built with Express.js.",
-          "Implemented session-based login, bcrypt password hashing, cookies, and role-based access control.",
-          "Built event creation, RSVP, search, filtering, and user dashboard workflows.",
-          "Optimized database access with MongoDB indexing and pagination for efficient data handling.",
-          "Added Progressive Web App support with service workers for improved offline usability.",
-          "Deployed the application on Render with MongoDB Atlas and secure production environment variables."
+          "Developed a full-stack event discovery platform enabling users to discover, create, manage, and RSVP to local events.",
+          "Implemented session authentication, bcrypt password hashing, protected routes, and role-based access control.",
+          "Built RESTful APIs for event management, RSVP processing, attendee tracking, and user account management.",
+          "Developed search and filtering, RSVP validation, organizer dashboards, PWA support, and backend security practices."
         ]
       },
       {
-        title: "Developer Portfolio Website",
-        subtitle: "React, Vite, Tailwind CSS",
+        title: "Developer Portfolio Platform",
+        subtitle: "React, Vite, Node.js, MongoDB Atlas, Vercel, Render",
         description:
-          "Responsive personal portfolio designed to present professional experience, projects, skills, education, and contact information.",
+          "Full-stack portfolio platform with an admin dashboard for projects, contact inquiries, and visitor analytics.",
         image: "/portfolio.png",
         links: {
           github: "https://github.com/Sravani-Developer/sravani_portfolio.git",
           live: "https://sravani-portfolio-three.vercel.app/"
         },
-        tags: ["React", "Vite", "Tailwind CSS", "Responsive Design"],
+        tags: ["React", "Vite", "Node.js", "MongoDB Atlas", "JWT", "GitHub API"],
         highlights: [
-          "Dynamic profile and project rendering from structured React data",
-          "Dark and light mode with persisted user preference",
-          "GitHub API integration for live repository activity",
-          "Admin dashboard, contact management, and visitor tracking API"
+          "Admin dashboard for projects, contact inquiries, and visitor analytics",
+          "JWT authentication and protected admin routes",
+          "MongoDB-backed content management and secure API integrations",
+          "GitHub API integration, event tracking, and cloud deployment"
         ],
         bullets: [
-          "Built a responsive portfolio using React, Vite, and Tailwind CSS with a component-based architecture.",
-          "Implemented dynamic project and profile rendering from structured data for easier future updates.",
-          "Improved performance using Vite build optimization and clean frontend asset bundling.",
-          "Prepared the site for deployment through GitHub Pages, Vercel, or similar static hosting workflows."
+          "Developed a full-stack portfolio platform with an admin dashboard for projects, contact inquiries, and visitor analytics.",
+          "Implemented JWT authentication, protected admin routes, MongoDB-backed content management, and secure API integrations.",
+          "Built project management, contact management, visitor analytics, event tracking, and GitHub API integration modules.",
+          "Deployed the frontend on Vercel and backend services on Render using scalable cloud deployment practices."
         ]
       }
     ],
