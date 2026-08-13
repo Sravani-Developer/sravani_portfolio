@@ -25,6 +25,12 @@ export const profiles = {
         displayName: "Developer Portfolio Website",
         description:
           "React and Vite portfolio with admin dashboard, contact management, visitor tracking, and GitHub activity."
+      },
+      {
+        repo: "Develevate-ai",
+        displayName: "DevElevate AI",
+        description:
+          "Full-stack AI-powered career preparation SaaS with resume analysis, mock interviews, roadmaps, analytics, and coding practice."
       }
     ],
     summary:
@@ -201,6 +207,53 @@ export const profiles = {
           "Implemented JWT authentication, protected admin routes, MongoDB-backed content management, and secure API integrations.",
           "Built project management, contact management, visitor analytics, event tracking, and GitHub API integration modules.",
           "Deployed the frontend on Vercel and backend services on Render using scalable cloud deployment practices."
+        ]
+      },
+      {
+        title: "DevElevate AI - Career Preparation SaaS Platform",
+        subtitle:
+          "Next.js, React, TypeScript, NestJS, Prisma, PostgreSQL, Redis, Docker, Vercel, Render",
+        description:
+          "Full-stack AI-powered career preparation SaaS platform for resume analysis, mock interview practice, personalized roadmaps, analytics, and coding challenge preparation.",
+        role:
+          "Full-stack developer responsible for product workflows, frontend dashboards, backend modules, database schema, authentication, testing, CI/CD, and production deployment.",
+        problem:
+          "Job seekers need one platform to practice interviews, improve resumes, follow role-specific roadmaps, and build coding confidence across technical and non-technical career paths.",
+        impact:
+          "Delivered an end-to-end deployed SaaS-style platform with real authentication, database persistence, role-aware preparation flows, analytics, and production-friendly fallback handling.",
+        architecture:
+          "Next.js frontend on Vercel -> NestJS REST API on Render -> Neon PostgreSQL with Prisma ORM -> Upstash Redis for session/cache infrastructure.",
+        links: {
+          github: "https://github.com/Sravani-Developer/Develevate-ai.git",
+          live: "https://develevate-ai-api.vercel.app/"
+        },
+        tags: [
+          "Next.js",
+          "TypeScript",
+          "NestJS",
+          "PostgreSQL",
+          "Prisma",
+          "Redis",
+          "JWT",
+          "Docker",
+          "CI/CD"
+        ],
+        highlights: [
+          "JWT authentication with refresh-token session handling and secure cookies",
+          "Resume analyzer with ATS-style scoring, job-description matching, and missing skill detection",
+          "Mock interview practice with role, stack, focus, and difficulty-based questions plus feedback scoring",
+          "Personalized roadmap generation for technical and non-technical roles",
+          "Real-time coding room interface with role/topic-based challenges and local Docker execution",
+          "GitHub Actions workflow with backend tests, frontend tests, type checks, E2E checks, and production builds"
+        ],
+        bullets: [
+          "Built secure registration and login flows with JWT sessions, refresh tokens, secure cookies, and persistent user data.",
+          "Developed backend modules for auth, resume analysis, interviews, roadmaps, analytics, coding rooms, admin overview, subscriptions, health checks, and Prisma database access.",
+          "Implemented resume analysis workflows with ATS-style scoring, job-description matching, matched skills, and missing skill detection.",
+          "Created mock interview and roadmap flows that adapt to role, technology stack, focus area, and difficulty level.",
+          "Built analytics dashboards using Recharts to track interview score and resume progress across user activity.",
+          "Added a coding room experience with Monaco Editor, Socket.IO, role/topic-based challenge generation, local review feedback, and Docker-based local execution for JavaScript, TypeScript, Python, Java, and C++.",
+          "Deployed the frontend on Vercel, backend on Render, PostgreSQL on Neon, Redis on Upstash, and added GitHub Actions CI/CD checks."
         ]
       }
     ],
