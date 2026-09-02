@@ -255,6 +255,34 @@ export const profiles = {
           "Added a coding room experience with Monaco Editor, Socket.IO, role/topic-based challenge generation, local review feedback, and Docker-based local execution for JavaScript, TypeScript, Python, Java, and C++.",
           "Deployed the frontend on Vercel, backend on Render, PostgreSQL on Neon, Redis on Upstash, and added GitHub Actions CI/CD checks."
         ]
+      },
+      {
+        title: "Lead.AI SMART Capstone - AI Business Strategy & Product Validation",
+        subtitle:
+          "Westcliff University | Customer Discovery, Product Validation, Strategic Roadmapping",
+        description:
+          "Pilot-first business strategy for an AI-assisted solution designed to help small businesses organize customer inquiries, improve follow-up efficiency, and recover missed opportunities.",
+        role:
+          "Team member focused on problem analysis, stakeholder research, product validation, and strategic recommendations.",
+        problem:
+          "Small businesses often receive inquiries through disconnected channels, creating delayed responses, inconsistent follow-up, missed bookings, and limited visibility into lead status.",
+        impact:
+          "Recommended a focused 90-day pilot for appointment-based salon and beauty businesses, supported by measurable response, lead-recovery, booking-recovery, and approval metrics. The sponsor confirmed that the final direction aligned with Lead.AI's expectations.",
+        tags: [
+          "AI Strategy",
+          "Business Analysis",
+          "Product Validation",
+          "Customer Discovery",
+          "Stakeholder Analysis",
+          "Strategic Roadmapping"
+        ],
+        bullets: [
+          "Analyzed delayed follow-up, fragmented customer inquiries, and missed revenue opportunities across calls, messages, websites, and social media.",
+          "Contributed to customer discovery, stakeholder analysis, competitive research, project scoping, assumption testing, and risk identification.",
+          "Recommended a human-reviewed AI workflow for inquiry organization, response suggestions, follow-up tracking, and business-owner approval.",
+          "Helped identify appointment-based salon and beauty businesses as a focused pilot segment with clear, time-sensitive, and measurable workflows.",
+          "Defined success metrics and contributed to a 90-day roadmap, weekly milestone reports, executive presentations, case-study documentation, and sponsor-facing deliverables."
+        ]
       }
     ],
     education: [
