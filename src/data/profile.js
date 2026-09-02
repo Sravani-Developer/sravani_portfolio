@@ -223,6 +223,7 @@ export const profiles = {
           "Delivered an end-to-end deployed SaaS-style platform with real authentication, database persistence, role-aware preparation flows, analytics, and production-friendly fallback handling.",
         architecture:
           "Next.js frontend on Vercel -> NestJS REST API on Render -> Neon PostgreSQL with Prisma ORM -> Upstash Redis for session/cache infrastructure.",
+        image: "/develevate.png",
         links: {
           github: "https://github.com/Sravani-Developer/Develevate-ai.git",
           live: "https://develevate-ai-api.vercel.app/"
@@ -268,6 +269,7 @@ export const profiles = {
           "Small businesses often receive inquiries through disconnected channels, creating delayed responses, inconsistent follow-up, missed bookings, and limited visibility into lead status.",
         impact:
           "Recommended a focused 90-day pilot for appointment-based salon and beauty businesses, supported by measurable response, lead-recovery, booking-recovery, and approval metrics. The sponsor confirmed that the final direction aligned with Lead.AI's expectations.",
+        image: "/lead-ai-concept.png",
         tags: [
           "AI Strategy",
           "Business Analysis",
