@@ -292,7 +292,7 @@ export const profiles = {
         degree: "Master's in Computer Science (Web Development)",
         school: "Westcliff University",
         dates: "March 2025 - August 2026",
-        gpa: "3.89"
+        gpa: "3.9"
       },
         {
         degree: "Master's in Computer Science",
