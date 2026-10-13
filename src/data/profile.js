@@ -34,9 +34,9 @@ export const profiles = {
       }
     ],
     summary:
-      "Full Stack Engineer with 4.5+ years of experience building scalable web applications using React.js, Next.js, Node.js, MongoDB, PostgreSQL, and AWS. Experienced in developing production applications serving 6,000+ users, designing RESTful APIs, integrating payment gateways, modernizing AngularJS applications, and mentoring junior developers.",
+      "Full-Stack Software Engineer with 4.5+ years of experience building secure, scalable applications with React, TypeScript, Python, FastAPI, Node.js, PostgreSQL, MongoDB, and AWS. Experienced in multi-tenant architecture, RESTful API and database design, logistics workflow automation, production systems serving 6,000+ users, and mentoring junior developers.",
     tagline:
-      "I build production-ready full-stack applications with React.js, Node.js, MongoDB, PostgreSQL, and AWS.",
+      "I build secure, production-ready web applications with React, TypeScript, Python, FastAPI, Node.js, PostgreSQL, and AWS.",
     openTo:
       "Open to Full-Stack Software Engineer, Frontend Developer, and Web Developer roles.",
     highlights: [
@@ -175,6 +175,45 @@ export const profiles = {
       }
     ],
     projects: [
+      {
+        title: "Logistics & Workforce Management Platforms",
+        subtitle: "Python, FastAPI, React, TypeScript, PostgreSQL, SQLAlchemy, Tailwind CSS",
+        description:
+          "Full-stack logistics and workforce software spanning multi-tenant attendance operations and an interactive freight-estimation experience.",
+        role:
+          "Freelance full-stack engineer collaborating with the SMS Logistics / CIX Tech in-house software team.",
+        problem:
+          "Operations teams needed secure organization-scoped workforce workflows and a simpler way for customers to estimate freight requirements online.",
+        impact:
+          "Supported 3 organizations, 10 locations, and 100+ users while streamlining freight estimation through route calculations and vehicle recommendations.",
+        architecture:
+          "React and TypeScript interfaces connected to Python/FastAPI REST services with PostgreSQL, SQLAlchemy, server-side role validation, and organization-scoped authorization.",
+        image: "/sms-logistics.png",
+        links: {
+          live: "https://smslogisticsin.com/"
+        },
+        tags: [
+          "Python",
+          "FastAPI",
+          "React",
+          "TypeScript",
+          "PostgreSQL",
+          "SQLAlchemy",
+          "Multi-Tenant Architecture",
+          "Tailwind CSS"
+        ],
+        highlights: [
+          "Multi-tenant workforce platform supporting 3 organizations, 10 locations, and 100+ users",
+          "Organization-scoped authorization and server-side role validation",
+          "Duplicate check-in prevention and incomplete-attendance classification",
+          "Five-step freight estimator with geocoding, route distance, and vehicle recommendations"
+        ],
+        bullets: [
+          "Designed RESTful attendance, trip-management, and operational-reporting workflows backed by PostgreSQL.",
+          "Enforced access boundaries across organizations and locations through scoped authorization and role validation.",
+          "Built responsive logistics interfaces and automated freight-estimation workflows using React and TypeScript."
+        ]
+      },
       {
         title: "EventLens - Event Discovery & Management Platform",
         subtitle: "React, Node.js, Express.js, MongoDB, Render, MongoDB Atlas",
