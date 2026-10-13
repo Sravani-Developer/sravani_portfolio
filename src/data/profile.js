@@ -1,8 +1,8 @@
 export const profiles = {
   sravanimedagam: {
     name: "Sravani Medagam",
-    title: "Full Stack Engineer",
-    location: "United States",
+    title: "Full-Stack Software Engineer",
+    location: "Fullerton, CA",
     email: "sravanimedagam0709@gmail.com",
     phone: "657-631-7877",
     resumeUrl: "/Sravani_Medagam_Resume.pdf",
@@ -10,7 +10,7 @@ export const profiles = {
     links: {
       linkedin: "https://www.linkedin.com/in/sravanireddy-medagam-364190354",
       github: "https://github.com/Sravani-Developer",
-      portfolio: "https://github.com/Sravani-Developer"
+      portfolio: "https://sravani-portfolio-three.vercel.app/"
     },
     githubUsername: "Sravani-Developer",
     githubFeaturedRepos: [
@@ -34,14 +34,14 @@ export const profiles = {
       }
     ],
     summary:
-      "Full-Stack Software Engineer with 4.5+ years of experience building secure, scalable applications with React, TypeScript, Python, FastAPI, Node.js, PostgreSQL, MongoDB, and AWS. Experienced in multi-tenant architecture, RESTful API and database design, logistics workflow automation, production systems serving 6,000+ users, and mentoring junior developers.",
+      "Full-Stack Software Engineer with 4+ years of experience building secure, scalable applications with React, TypeScript, Python, FastAPI, Node.js, PostgreSQL, MongoDB, and AWS. Experienced in multi-tenant architecture, RESTful API and database design, logistics workflow automation, production systems serving 6,000+ users, and mentoring junior developers.",
     tagline:
       "I build secure, production-ready web applications with React, TypeScript, Python, FastAPI, Node.js, PostgreSQL, and AWS.",
     openTo:
       "Open to Full-Stack Software Engineer, Frontend Developer, and Web Developer roles.",
     highlights: [
       {
-        value: "4.5+",
+        value: "4+",
         label: "Years of full-stack development"
       },
       {
@@ -150,7 +150,7 @@ export const profiles = {
         ]
       },
       {
-        role: "Full Stack Engineer",
+        role: "Full Stack Web Developer",
         org: "Eazy Refund Consultancy LLP",
         location: "Hyderabad, India",
         dates: "September 2020 - January 2025",
@@ -281,7 +281,7 @@ export const profiles = {
       {
         title: "DevElevate AI - Career Preparation SaaS Platform",
         subtitle:
-          "Next.js, React, TypeScript, NestJS, Prisma, PostgreSQL, Redis, Docker, Vercel, Render",
+          "Next.js, React, TypeScript, Node.js, Express.js, Redis, Docker, JWT",
         description:
           "Full-stack AI-powered career preparation SaaS platform for resume analysis, mock interview practice, personalized roadmaps, analytics, and coding challenge preparation.",
         role:
@@ -291,7 +291,7 @@ export const profiles = {
         impact:
           "Delivered an end-to-end deployed SaaS-style platform with real authentication, database persistence, role-aware preparation flows, analytics, and production-friendly fallback handling.",
         architecture:
-          "Next.js frontend on Vercel -> NestJS REST API on Render -> Neon PostgreSQL with Prisma ORM -> Upstash Redis for session/cache infrastructure.",
+          "Next.js and React frontend connected to Node.js and Express.js REST APIs, with Redis-backed infrastructure and Docker-based development workflows.",
         image: "/develevate.png",
         links: {
           github: "https://github.com/Sravani-Developer/Develevate-ai.git",
@@ -299,14 +299,13 @@ export const profiles = {
         },
         tags: [
           "Next.js",
+          "React",
           "TypeScript",
-          "NestJS",
-          "PostgreSQL",
-          "Prisma",
+          "Node.js",
+          "Express.js",
           "Redis",
           "JWT",
-          "Docker",
-          "CI/CD"
+          "Docker"
         ],
         highlights: [
           "JWT authentication with refresh-token session handling and secure cookies",
@@ -318,12 +317,12 @@ export const profiles = {
         ],
         bullets: [
           "Built secure registration and login flows with JWT sessions, refresh tokens, secure cookies, and persistent user data.",
-          "Developed backend modules for auth, resume analysis, interviews, roadmaps, analytics, coding rooms, admin overview, subscriptions, health checks, and Prisma database access.",
+          "Developed Node.js and Express.js backend modules for authentication, resume analysis, interviews, roadmaps, analytics, coding rooms, and administrative workflows.",
           "Implemented resume analysis workflows with ATS-style scoring, job-description matching, matched skills, and missing skill detection.",
           "Created mock interview and roadmap flows that adapt to role, technology stack, focus area, and difficulty level.",
           "Built analytics dashboards using Recharts to track interview score and resume progress across user activity.",
           "Added a coding room experience with Monaco Editor, Socket.IO, role/topic-based challenge generation, local review feedback, and Docker-based local execution for JavaScript, TypeScript, Python, Java, and C++.",
-          "Deployed the frontend on Vercel, backend on Render, PostgreSQL on Neon, Redis on Upstash, and added GitHub Actions CI/CD checks."
+          "Configured Docker-based development workflows and added GitHub Actions CI/CD checks for application quality and deployment readiness."
         ]
       },
       {
