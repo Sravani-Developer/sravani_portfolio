@@ -472,11 +472,17 @@ function PortfolioApp() {
                                 <p className="resume-timeline-org">
                                   {item.org} - {item.dates}
                                 </p>
+                                {item.location ? (
+                                  <p className="resume-timeline-location">{item.location}</p>
+                                ) : null}
                               </div>
                               <div className="resume-timeline-icon">
                                 <span className="material-symbols-outlined">corporate_fare</span>
                               </div>
                             </div>
+                            {item.summary ? (
+                              <p className="resume-timeline-summary">{item.summary}</p>
+                            ) : null}
                             <ul>
                               {item.bullets.map((bullet) => (
                                 <li key={bullet}>{bullet}</li>

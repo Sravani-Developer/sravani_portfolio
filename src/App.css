@@ -390,9 +390,18 @@ a {
 }
 
 .resume-timeline-org {
-  margin: 6px 0 12px;
+  margin: 6px 0 0;
   color: var(--primary);
   font-size: 13px;
+}
+
+.resume-timeline-location {
+  margin: 4px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .resume-timeline-header {
@@ -411,6 +420,13 @@ a {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--surface-border);
+}
+
+.resume-timeline-summary {
+  margin: 2px 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .resume-timeline-content ul {

@@ -67,6 +67,7 @@ export const profiles = {
           "AngularJS",
           "JavaScript (ES6+)",
           "TypeScript",
+          "Tailwind CSS",
           "HTML5",
           "CSS3",
           "SASS",
@@ -77,6 +78,8 @@ export const profiles = {
       {
         label: "Backend",
         items: [
+          "Python",
+          "FastAPI",
           "Node.js",
           "Express.js",
           "REST APIs",
@@ -92,6 +95,7 @@ export const profiles = {
           "MongoDB Atlas",
           "Mongoose",
           "PostgreSQL",
+          "SQLAlchemy",
           "MySQL",
           "Data Modeling"
         ]
@@ -119,6 +123,32 @@ export const profiles = {
       }
     ],
     experience: [
+      {
+        role: "Freelance Full-Stack Software Engineer",
+        org: "SMS Logistics / CIX Tech (In-House Software Team)",
+        location: "Remote",
+        dates: "May 2026 - September 2026",
+        summary:
+          "Developed and enhanced full-stack web applications for logistics operations and workforce management, focusing on scalable backend services, secure multi-tenant architecture, and intuitive user experiences. Collaborated with the internal development team to translate operational requirements into reliable, maintainable software solutions.",
+        tags: [
+          "Python",
+          "FastAPI",
+          "React.js",
+          "TypeScript",
+          "PostgreSQL",
+          "SQLAlchemy",
+          "REST APIs",
+          "Tailwind CSS"
+        ],
+        bullets: [
+          "Developed Python and FastAPI backend services for CIX Attendance, a multi-tenant workforce management platform supporting 3 organizations, 10 locations, and 100+ users.",
+          "Designed RESTful APIs and PostgreSQL-backed workflows for employee attendance, trip management, and operational reporting.",
+          "Implemented organization-scoped authorization and server-side role validation to enforce secure access boundaries across organizations and locations.",
+          "Built validation mechanisms to prevent duplicate check-ins and automatically classify incomplete attendance records, improving operational consistency.",
+          "Built responsive React and TypeScript interfaces for a logistics website, including an interactive five-step freight estimator.",
+          "Integrated geocoding, route-distance calculations, and vehicle recommendations to streamline freight estimation."
+        ]
+      },
       {
         role: "Full Stack Engineer",
         org: "Eazy Refund Consultancy LLP",
